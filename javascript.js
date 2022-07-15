@@ -3,11 +3,10 @@ const ROCK = 0;
 const PAPER = 1;
 const SCISSORS = 2;
 
-compChoice = getComputerChoice();
+let compWins = 0;
+let playWins = 0;
 
-playerChoice = getPlayerChoice();
-
-console.log(playRound(playerChoice, compChoice));
+game();
 
 function getComputerChoice()
 {
@@ -75,7 +74,7 @@ function playRound(playerChoice, compChoice)
     {
         console.log("The computer chose Scissors");
     }
-    
+
     if (playerChoice === compChoice)
     {
         msg = "Draw Game!";
@@ -83,27 +82,62 @@ function playRound(playerChoice, compChoice)
     else if (playerChoice === ROCK && compChoice === PAPER)
     {
         msg = "Computer wins! Paper beats rock!";
+        compWins++;
     }
     else if (playerChoice === PAPER && compChoice === SCISSORS)
     {
         msg = "Computer wins! Scissors beats paper!";
+        compWins++;
     }
     else if (playerChoice === SCISSORS && compChoice === ROCK)
     {
         msg = "Computer wins! Rock beats scissors!";
+        compWins++
     }
     else if (compChoice === ROCK && playerChoice === PAPER)
     {
         msg = "You win! Paper beats rock!";
+        playWins++;
     }
     else if (compChoice === PAPER && playerChoice === SCISSORS)
     {
         msg = "You win! Scissors beats paper!";
+        playWins++;
     }
     else if (compChoice === SCISSORS && playerChoice === ROCK)
     {
         msg = "You win! Rock beats scissors!";
+        playWins++;
     }
 
     return msg;
+}
+
+function game()
+{
+    for (let round = 0; round < 5; round++)
+    {
+        compChoice = getComputerChoice();
+
+        playerChoice = getPlayerChoice();
+
+        console.log(playRound(playerChoice, compChoice));
+        
+        console.log(`Player Wins: ${playWins} Computer Wins: ${compWins}`);
+
+    }
+
+    if (playWins > compWins)
+    {
+        console.log("You win!");
+    }
+    else if (playWins < compWins)
+    {
+        console.log("Computer wins!");
+    }
+    else
+    {
+        console.log("Draw game!");
+    }
+
 }
