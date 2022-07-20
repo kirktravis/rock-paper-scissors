@@ -1,7 +1,7 @@
 
-const ROCK = 0;
-const PAPER = 1;
-const SCISSORS = 2;
+const ROCK = 'Rock';
+const PAPER = 'Paper';
+const SCISSORS = 'Scissors';
 
 let compWins = 0;
 let playWins = 0;
@@ -32,98 +32,70 @@ function getComputerChoice()
 
     let choice = Math.random() * MAX;
 
-    return Math.floor(choice);
-}
-
-function getPlayerChoice()
-{
-    let choice;
-
-    
-    function rockFunction()
+    if (choice == 0)
     {
+        choice = ROCK;
     }
-    rock.addEventListener('click', rockFunction);
 
-    paper.addEventListener('click', () => 
+    if (choice == 1)
     {
         choice = PAPER;
-    });
+    }
 
-    scissors.addEventListener('click', () => 
+    else
     {
         choice = SCISSORS;
-    });
+    }
 
-    
+    return choice;
 }
+
 
 function playRound(playerChoice, compChoice)
 {   
     let msg;
 
-        if (playerChoice == ROCK)
-    {
-        console.log("The player chose Rock");
-    }
-    else if(playerChoice == PAPER)
-    {
-        console.log("The player chose Paper");
-    }
-    else
-    {
-        console.log("The player chose Scissors");
-    }
+    const results = document.querySelector('#results')
 
-    if (compChoice == ROCK)
-    {
-        console.log("The computer chose Rock");
-    }
-    else if(compChoice == PAPER)
-    {
-        console.log("The computer chose Paper");
-    }
-    else
-    {
-        console.log("The computer chose Scissors");
-    }
+    msg = `You chose ${playerChoice} and the computer chose ${compChoice}.`;
 
     if (playerChoice === compChoice)
     {
-        msg = "Draw Game!";
+        msg = msg + "\nDraw Game!";
     }
     else if (playerChoice === ROCK && compChoice === PAPER)
     {
-        msg = "Computer wins! Paper beats rock!";
+        msg =  msg + "\n\nComputer wins! Paper beats rock!";
         compWins++;
     }
     else if (playerChoice === PAPER && compChoice === SCISSORS)
     {
-        msg = "Computer wins! Scissors beats paper!";
+        msg = msg + "\nComputer wins! Scissors beats paper!";
         compWins++;
     }
     else if (playerChoice === SCISSORS && compChoice === ROCK)
     {
-        msg = "Computer wins! Rock beats scissors!";
+        msg = msg + "\nComputer wins! Rock beats scissors!";
         compWins++
     }
     else if (compChoice === ROCK && playerChoice === PAPER)
     {
-        msg = "You win! Paper beats rock!";
+        msg = msg + "\nYou win! Paper beats rock!";
         playWins++;
     }
     else if (compChoice === PAPER && playerChoice === SCISSORS)
     {
-        msg = "You win! Scissors beats paper!";
+        msg = msg + "\nYou win! Scissors beats paper!";
         playWins++;
     }
     else if (compChoice === SCISSORS && playerChoice === ROCK)
     {
-        msg = "You win! Rock beats scissors!";
+        msg = msg + "\nYou win! Rock beats scissors!";
         playWins++;
     }
 
-    return msg;
+    results.textContent = msg;
+    
 }
 
 function game()
