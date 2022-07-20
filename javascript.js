@@ -5,8 +5,26 @@ const SCISSORS = 2;
 
 let compWins = 0;
 let playWins = 0;
+let choice;
 
-game();
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+
+rock.addEventListener('click', function (e) {
+    choice = ROCK;
+    game();
+});
+paper.addEventListener('click', function (e) {
+    choice = PAPER;
+    game();
+});
+scissors.addEventListener('click', function (e) {
+    choice = SCISSORS;
+    game();
+});
+
+
 
 function getComputerChoice()
 {
@@ -19,36 +37,31 @@ function getComputerChoice()
 
 function getPlayerChoice()
 {
-    const P_ROCK = "ROCK";
-    const P_PAPER = "PAPER";
-    const P_SCISSORS = "SCISSORS";
+    let choice;
 
-    let choice = window.prompt("Input Rock, Paper, or Scissors");
-
-    choice = choice.toUpperCase();
-
-    if (choice === P_ROCK)
+    
+    function rockFunction()
     {
-        choice = ROCK;
     }
-    else if (choice === P_PAPER)
+    rock.addEventListener('click', rockFunction);
+
+    paper.addEventListener('click', () => 
     {
         choice = PAPER;
-    }
-    else if (choice === P_SCISSORS)
+    });
+
+    scissors.addEventListener('click', () => 
     {
         choice = SCISSORS;
-    }
-    else
-    {
-        console.log("ERROR: INVALID INPUT");
-    }
+    });
 
-    return choice;
+    
 }
 
 function playRound(playerChoice, compChoice)
-    {
+{   
+    let msg;
+
         if (playerChoice == ROCK)
     {
         console.log("The player chose Rock");
@@ -115,29 +128,11 @@ function playRound(playerChoice, compChoice)
 
 function game()
 {
-    for (let round = 0; round < 5; round++)
-    {
+
         compChoice = getComputerChoice();
 
-        playerChoice = getPlayerChoice();
-
-        console.log(playRound(playerChoice, compChoice));
+        playerChoice = choice;
         
-        console.log(`Player Wins: ${playWins} Computer Wins: ${compWins}`);
-
-    }
-
-    if (playWins > compWins)
-    {
-        console.log("You win!");
-    }
-    else if (playWins < compWins)
-    {
-        console.log("Computer wins!");
-    }
-    else
-    {
-        console.log("Draw game!");
-    }
+        console.log(playRound(playerChoice, compChoice));
 
 }
