@@ -7,6 +7,8 @@ let compWins = 0;
 let playWins = 0;
 let choice;
 
+const header = document.querySelector('body');
+const score = document.createElement('h1');
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
@@ -100,11 +102,23 @@ function playRound(playerChoice, compChoice)
 
 function game()
 {
-
         compChoice = getComputerChoice();
-
-        playerChoice = choice;
         
-        console.log(playRound(playerChoice, compChoice));
+        playRound(choice, compChoice);
+
+        if (playWins >= 5)
+        {
+            score.textContent = "You win!";
+        }
+        else if (compWins >= 5)
+        {
+            score.textContent = "You lose."
+        }
+        else
+        {
+            score.textContent =`Player Score: ${playWins} \nComputer Score: ${compWins}`;
+        }        
+        
+        header.insertBefore(score, header.firstChild);
 
 }
