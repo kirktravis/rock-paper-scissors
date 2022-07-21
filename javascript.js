@@ -34,16 +34,15 @@ function getComputerChoice()
 
     let choice = Math.random() * MAX;
 
-    if (choice == 0)
+    if (choice <= 1)
     {
         choice = ROCK;
     }
 
-    if (choice == 1)
+    if (choice > 1 && choice <= 2)
     {
         choice = PAPER;
     }
-
     else
     {
         choice = SCISSORS;
